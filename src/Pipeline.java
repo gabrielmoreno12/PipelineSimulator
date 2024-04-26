@@ -23,6 +23,7 @@ public class Pipeline {
         flReader = new FlReader();
         flReader.readFile();
         instructions.add(flReader.getInstruction());
+        System.out.println(instructions);
 
     }
 

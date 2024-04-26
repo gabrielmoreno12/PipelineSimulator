@@ -71,4 +71,8 @@ public class Instruction {
     public boolean getValida() {
         return valida;
     }
+
+    public String toString() {
+        return operation + "\t" + op1 + "\t" + op2 + "\t" + op3 + "\n";
+    }
 }
