@@ -73,6 +73,10 @@ public class Instruction {
     }
 
     public String toString() {
-        return operation + "\t" + op1 + "\t" + op2 + "\t" + op3 + "\n";
+        return "[Operation: "+getOperation()
+                +", op1: "+op1
+                +", op2: "+op2
+                +", op3: "+op3
+                +", Válida: "+valida+"]";
     }
 }
