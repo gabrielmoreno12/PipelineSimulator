@@ -11,9 +11,9 @@ public class Main {
         Pipeline p = new Pipeline(new ULA());
         System.out.println(p.getUla().getOperationsMap());
 
-        p.test(ir);
+        p.test(ir, p);
         System.out.println();
-        p.test2(ir);
+        p.test2(ir, p);
         System.out.println();
         System.out.println(Arrays.toString(p.getRegisters()));
 

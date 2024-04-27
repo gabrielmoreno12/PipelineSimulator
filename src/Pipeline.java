@@ -21,31 +21,34 @@ public class Pipeline {
         this.ula = ula;
     }
 
-    public int stage3_ULA(Instruction instruction) {
-        return ula.operationDecider(instruction);
+    public int stage3_ULA(Instruction instruction, Pipeline pipeline) {
+        return ula.operationDecider(instruction, pipeline);
     }
 
-    public void test(InstructionsReader instructionsReader) {
+    public void test(InstructionsReader instructionsReader, Pipeline pipeline) {
         for (Instruction instruction : instructionsReader.getInstructions()) {
-            System.out.println(stage3_ULA(instruction));
+            System.out.println(stage3_ULA(instruction, pipeline));
         }
     }
 
-    public void stage4_WriteBack(Instruction instruction) {
-        registers[instruction.getOp1()] = ula.operationDecider(instruction);
+    public void stage4_WriteBack(Instruction instruction, Pipeline pipeline) {
+
+        registers[instruction.getOp1()] += ula.operationDecider(instruction, pipeline);
     }
 
-    public void test2(InstructionsReader instructionsReader) {
+    public void test2(InstructionsReader instructionsReader, Pipeline pipeline) {
         for (Instruction instruction : instructionsReader.getInstructions()) {
-            stage4_WriteBack(instruction);
+            stage4_WriteBack(instruction, pipeline);
             System.out.println(registers[instruction.getOp1()]);
         }
     }
 
 
     public int[] getRegisters() {
+        System.out.print("Registers: ");
         return registers;
     }
+
 
     public void setRegisters(int[] registers) {
         this.registers = registers;

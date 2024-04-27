@@ -17,12 +17,24 @@ public class ULA {
 
     // Decide qual operação realizar de acordo com a instrução
     // utilizando o ID da operação
-    public int operationDecider(Instruction instruction) {
+    public int operationDecider(Instruction instruction, Pipeline pipeline) {
+
         int opCode = operationsMap.get(instruction.getOperation());
+        int[] registers = pipeline.getRegisters();
 
         return switch (opCode) {
-            case 0, 1 -> add(instruction.getOp2(), instruction.getOp3());
-            case 2, 3 -> sub(instruction.getOp2(), instruction.getOp3());
+            // add
+            case 0 -> add(registers[instruction.getOp2()],
+                    registers[instruction.getOp3()]);
+            // addi
+            case 1 -> add(instruction.getOp3(),
+                    registers[instruction.getOp2()]);
+            // sub
+            case 2 -> sub(registers[instruction.getOp2()],
+                    registers[instruction.getOp3()]);
+            // subi
+            case 3 -> sub(instruction.getOp2(),
+                    registers[instruction.getOp3()]);
             default -> 0;
         };
     }
@@ -30,6 +42,7 @@ public class ULA {
     public int add (int a, int b) {
         return (a + b);
     }
+
 
     public int sub (int a, int b) {
         return (a - b);
