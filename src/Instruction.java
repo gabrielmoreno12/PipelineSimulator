@@ -5,6 +5,9 @@ public class Instruction {
     add 1 2 3
     operation = add
     op1 = 1, op2 = 2, op = 3
+    Execução:
+    soma do valor do registrador 2 + valor do registrador 3
+    é armazenada no registrador 1 ($1 = $2 + $3)
      */
     private String operation;
     private int op1, op2, op3;
@@ -22,6 +25,13 @@ public class Instruction {
         this.op2 = op2;
         this.op3 = op3;
         this.valida = isValida();
+    }
+
+    // Caso da instrução j
+    public Instruction(String operation,
+                       int op1) {
+        this.operation = operation;
+        this.op1 = op1;
     }
 
     public Instruction() { }
