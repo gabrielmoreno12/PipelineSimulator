@@ -9,5 +9,15 @@ pipeline:
 5 - Registra resposta da ULA nos registradores
  */
 
+public class Pipeline {
+    private int[] registers = new int[32];
+    private ULA ula;
+    private PC pc;
+    private Pipeline next;
+    private Pipeline prev;
+    
+
+
+}
 
 

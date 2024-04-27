@@ -72,11 +72,12 @@ public class Instruction {
         return valida;
     }
 
+    @Override
     public String toString() {
-        return "[Operation: "+getOperation()
-                +", op1: "+op1
-                +", op2: "+op2
-                +", op3: "+op3
-                +", Válida: "+valida+"]";
+        return "[Operation: "+ operation
+                + ", op1: " + op1
+                + ", op2: " + op2
+                + ", op3: " + op3
+                + ", Válida: " + valida+"]";
     }
 }

@@ -25,21 +25,16 @@ public class InstructionsReader {
 
             // Criando um BufferedReader para ler o arquivo
             BufferedReader reader = new BufferedReader(new FileReader(file));
-
-            // Variável para armazenar cada linha do arquivo
-            String line = null;
-
-            splitInstructions(file, reader);
-
-            // Fechando o BufferedReader após a leitura do arquivo
+            splitInstructions(reader);
             reader.close();
+
         } catch (IOException e) {
             // Lidando com possíveis exceções de IO
             e.printStackTrace();
         }
     }
 
-    public void splitInstructions(File file, BufferedReader reader) throws IOException {
+    public void splitInstructions(BufferedReader reader) throws IOException {
         String line;
 
         // Lendo e imprimindo cada linha do arquivo
@@ -77,9 +72,11 @@ public class InstructionsReader {
                 }
             }
 
-            // Adiciona a instrução à lista apenas se ela for válida
+
+            // Alimentando a lista com instruções
             instructions.add(instruction);
         }
+
     }
 
 
@@ -100,26 +97,3 @@ public class InstructionsReader {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

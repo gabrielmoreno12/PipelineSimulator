@@ -5,5 +5,7 @@ public class Main {
         ir.readInstruction();
         System.out.println(ir.instructionsToString());
 
+
+
     }
 }
