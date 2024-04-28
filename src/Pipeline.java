@@ -25,27 +25,47 @@ public class Pipeline {
         return ula.operationDecider(instruction, pipeline);
     }
 
+    public void stage4_WriteBack(Instruction instruction, Pipeline pipeline) {
+        registers[instruction.getOp1()] += stage3_ULA(instruction, pipeline);
+    }
+
     public void test(InstructionsReader instructionsReader, Pipeline pipeline) {
         for (Instruction instruction : instructionsReader.getInstructions()) {
-            System.out.println(stage3_ULA(instruction, pipeline));
+            // Caso instruction seja add, addi, sub ou subi
+            if (stage3_ULA(instruction, pipeline) != 0) {
+                stage3_ULA(instruction, pipeline);
+            } else { // Caso instruction seja j
+                stage3_ULA(new Instruction(
+                        instructionsReader.getInstructions().get(instruction.getOp1()).getOperation(),
+                        instructionsReader.getInstructions().get(instruction.getOp1()).getOp1(),
+                        instructionsReader.getInstructions().get(instruction.getOp1()).getOp2(),
+                        instructionsReader.getInstructions().get(instruction.getOp1()).getOp3(),
+                        instructionsReader.getInstructions().get(instruction.getOp1()).getValida()
+                ), pipeline);
+            }
         }
     }
 
-    public void stage4_WriteBack(Instruction instruction, Pipeline pipeline) {
-
-        registers[instruction.getOp1()] += ula.operationDecider(instruction, pipeline);
-    }
 
     public void test2(InstructionsReader instructionsReader, Pipeline pipeline) {
         for (Instruction instruction : instructionsReader.getInstructions()) {
-            stage4_WriteBack(instruction, pipeline);
-            System.out.println(registers[instruction.getOp1()]);
+            // Caso instruction seja add, addi, sub ou subi
+            if (stage3_ULA(instruction, pipeline) != 0) {
+                stage4_WriteBack(instruction, pipeline);
+            } else { // Caso instruction seja j
+                stage4_WriteBack(new Instruction(
+                        instructionsReader.getInstructions().get(instruction.getOp1()).getOperation(),
+                        instructionsReader.getInstructions().get(instruction.getOp1()).getOp1(),
+                        instructionsReader.getInstructions().get(instruction.getOp1()).getOp2(),
+                        instructionsReader.getInstructions().get(instruction.getOp1()).getOp3(),
+                        instructionsReader.getInstructions().get(instruction.getOp1()).getValida()
+                ), pipeline);
+            }
         }
     }
 
 
     public int[] getRegisters() {
-        System.out.print("Registers: ");
         return registers;
     }
 

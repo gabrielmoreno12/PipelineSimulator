@@ -14,7 +14,7 @@ public class Main {
         p.test(ir, p);
         System.out.println();
         p.test2(ir, p);
-        System.out.println();
+        System.out.print("Registers: ");
         System.out.println(Arrays.toString(p.getRegisters()));
 
     }
