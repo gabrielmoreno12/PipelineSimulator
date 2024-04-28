@@ -35,13 +35,8 @@ public class Pipeline {
             if (stage3_ULA(instruction, pipeline) != 0) {
                 stage3_ULA(instruction, pipeline);
             } else { // Caso instruction seja j
-                stage3_ULA(new Instruction(
-                        instructionsReader.getInstructions().get(instruction.getOp1()).getOperation(),
-                        instructionsReader.getInstructions().get(instruction.getOp1()).getOp1(),
-                        instructionsReader.getInstructions().get(instruction.getOp1()).getOp2(),
-                        instructionsReader.getInstructions().get(instruction.getOp1()).getOp3(),
-                        instructionsReader.getInstructions().get(instruction.getOp1()).getValida()
-                ), pipeline);
+                Instruction jumpInstruction = instructionsReader.getInstructions().get(instruction.getOp1());
+                stage3_ULA(jumpInstruction, pipeline);
             }
         }
     }
@@ -53,13 +48,8 @@ public class Pipeline {
             if (stage3_ULA(instruction, pipeline) != 0) {
                 stage4_WriteBack(instruction, pipeline);
             } else { // Caso instruction seja j
-                stage4_WriteBack(new Instruction(
-                        instructionsReader.getInstructions().get(instruction.getOp1()).getOperation(),
-                        instructionsReader.getInstructions().get(instruction.getOp1()).getOp1(),
-                        instructionsReader.getInstructions().get(instruction.getOp1()).getOp2(),
-                        instructionsReader.getInstructions().get(instruction.getOp1()).getOp3(),
-                        instructionsReader.getInstructions().get(instruction.getOp1()).getValida()
-                ), pipeline);
+                Instruction jumpInstruction = instructionsReader.getInstructions().get(instruction.getOp1());
+                stage4_WriteBack(jumpInstruction, pipeline);
             }
         }
     }
