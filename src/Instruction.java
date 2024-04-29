@@ -11,7 +11,7 @@ public class Instruction {
      */
     private String operation;
     private int op1, op2, op3;
-    private boolean valida; // Será utilizada nas etapas de pipeline
+    private boolean valida=true; // Será utilizada nas etapas de pipeline
                             // em caso de instrução antecedente ser
                             // BEQ ou J (estudar comportamento)
 
@@ -24,7 +24,7 @@ public class Instruction {
         this.op1 = op1;
         this.op2 = op2;
         this.op3 = op3;
-        this.valida = isValida();
+        this.valida = valida;
     }
 
     // Caso da instrução j
@@ -37,8 +37,9 @@ public class Instruction {
     public Instruction() { }
 
     // Método a ser definido ainda
-    public boolean isValida() {
-        return valida;
+    public boolean beqExecution(ULA ula, Pipeline pipeline) {
+        return (ula.beqComparison(pipeline.getRegisters()[getOp2()],
+                                pipeline.getRegisters()[getOp3()]));
     }
 
     // Getters e Setters

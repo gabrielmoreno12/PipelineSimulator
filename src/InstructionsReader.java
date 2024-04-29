@@ -72,7 +72,6 @@ public class InstructionsReader {
                 }
             }
 
-
             // Alimentando a lista com instruções
             instructions.add(instruction);
         }

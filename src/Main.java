@@ -8,12 +8,22 @@ public class Main {
         ir.readInstruction();
         System.out.println(ir.instructionsToString());
 
-        Pipeline p = new Pipeline(new ULA());
-        System.out.println(p.getUla().getOperationsMap());
+        ULA ula = new ULA();
+        Pipeline p = new Pipeline(ir, ula);
 
-        p.test(ir, p);
         System.out.println();
-        p.test2(ir, p);
+
+        p.stage4_forAll(ir, p);
+        System.out.println(ir.getInstructions().getLast());
+        p.stage3_forAll(ir, p);
+        System.out.println(ir.getInstructions().getLast());
+        p.stage4_forAll(ir, p);
+
+
+
+
+
+
         System.out.print("Registers: ");
         System.out.println(Arrays.toString(p.getRegisters()));
 

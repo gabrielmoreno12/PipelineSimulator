@@ -11,8 +11,8 @@ public class ULA {
         operationsMap.put("addi", 1);
         operationsMap.put("sub", 2);
         operationsMap.put("subi", 3);
-        operationsMap.put("beq", 4);
-        operationsMap.put("j", 5);
+        operationsMap.put("j", 4);
+        operationsMap.put("beq", 5);
     }
 
     // Decide qual operação realizar de acordo com a instrução
@@ -30,21 +30,25 @@ public class ULA {
             case 1 -> add(instruction.getOp3(),
                     registers[instruction.getOp2()]);
             // sub
-            case 2 -> sub(registers[instruction.getOp2()],
-                    registers[instruction.getOp3()]);
+            case 2 -> sub(registers[instruction.getOp3()],
+                    registers[instruction.getOp2()]);
             // subi
-            case 3 -> sub(instruction.getOp2(),
-                    registers[instruction.getOp3()]);
-            default -> 0;
+            case 3 -> sub(instruction.getOp3(),
+                    registers[instruction.getOp2()]);
+            default -> -1;
         };
     }
 
-    public int add (int a, int b) {
+    public boolean beqComparison(int a, int b) {
+        return a == b;
+    }
+
+    public int add(int a, int b) {
         return (a + b);
     }
 
 
-    public int sub (int a, int b) {
+    public int sub(int a, int b) {
         return (a - b);
     }
 
