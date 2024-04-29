@@ -139,8 +139,6 @@ public class Pipeline {
                 execute_stage4_WriteBack(beqReference, instructionsReader, pipeline);
                 execute_stage3_ULA(beqReference, instructionsReader, pipeline);
 
-
-
                 System.out.println("PAssou aqui: " + Arrays.toString(pipeline.getRegisters()));
                 cont++;
                 System.out.println(cont);
