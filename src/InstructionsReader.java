@@ -13,9 +13,10 @@ Classe responsável por:
  */
 
 public class InstructionsReader {
-    private List<Instruction> instructions = new ArrayList<Instruction>();
+    private List<Instruction> instructions = new ArrayList<>();
 
     public InstructionsReader() {
+        readInstruction();
     }
 
     public void readInstruction() {
@@ -39,7 +40,6 @@ public class InstructionsReader {
 
         // Lendo e imprimindo cada linha do arquivo
         while ((line = reader.readLine()) != null) {
-            System.out.println(line);
 
             // Dividindo a string em substrings com base no espaço em branco
             String[] arrayElem = line.split("\\s+");
@@ -50,32 +50,37 @@ public class InstructionsReader {
             }
 
             // Cria uma nova instrução
-            Instruction instruction = new Instruction();
-
-            // Define a operação da instrução
-            instruction.setOperation(arrayElem[0]);
-
-            // Define os operandos da instrução
-            for (int i = 1; i < arrayElem.length; i++) {
-                switch (i) {
-                    case 1:
-                        instruction.setOp1(Integer.parseInt(arrayElem[i]));
-                        break;
-                    case 2:
-                        instruction.setOp2(Integer.parseInt(arrayElem[i]));
-                        break;
-                    case 3:
-                        instruction.setOp3(Integer.parseInt(arrayElem[i]));
-                        break;
-                    default:
-                        break;
-                }
-            }
+            Instruction instruction = getInstruction(arrayElem);
 
             // Alimentando a lista com instruções
             instructions.add(instruction);
         }
 
+    }
+
+    private static Instruction getInstruction(String[] arrayElem) {
+        Instruction instruction = new Instruction();
+
+        // Define a operação da instrução
+        instruction.setOperation(arrayElem[0]);
+
+        // Define os operandos da instrução
+        for (int i = 1; i < arrayElem.length; i++) {
+            switch (i) {
+                case 1:
+                    instruction.setOp1(Integer.parseInt(arrayElem[i]));
+                    break;
+                case 2:
+                    instruction.setOp2(Integer.parseInt(arrayElem[i]));
+                    break;
+                case 3:
+                    instruction.setOp3(Integer.parseInt(arrayElem[i]));
+                    break;
+                default:
+                    break;
+            }
+        }
+        return instruction;
     }
 
 
@@ -89,9 +94,12 @@ public class InstructionsReader {
 
     public String instructionsToString() {
         StringBuilder sb = new StringBuilder();
+        int index = 0;
         for (Instruction instruction : instructions) {
-            sb.append(instruction.toString()).append("\n");
+            sb.append("["+index+"] "+instruction.toString()).append("\n");
+            index++;
         }
+
         return sb.toString();
     }
 

@@ -1,0 +1,92 @@
+
+Instruções de exemplo:
+        addi 1 0 10
+        addi 2 0 20
+        addi 3 0 2
+        sub 4 3 2
+        add 5 1 2
+
+Instruction instruction = instructionsReader.getInstructions().get(clock);
+
+    // Ciclo 1
+    executeStage1(instructions.get(0));  // addi 1 0 10 [INICIADA]
+    clock++;
+
+
+    // Ciclo 2
+    executeStage2();  // addi 1 0 10
+    clock++;
+
+    executeStage1(instructions.get(1));  // addi 2 0 20 [INICIADA]
+    clock++;
+
+
+    // Ciclo 3
+    executeStage3();  // addi 1 0 10
+    clock++;
+
+    executeStage2();  // addi 2 0 20
+    clock++;
+
+    executeStage1(instructions.get(2));  // addi 3 0 2 [INICIADA]
+    clock++;
+
+
+    // Ciclo 4
+    executeStage4();  // addi 1 0 10 [FINALIZADA]
+    clock++;
+    PC++;
+
+    executeStage3();  // addi 2 0 20
+    clock++;
+
+    executeStage2();  // addi 3 0 2
+    clock++;
+
+    executeStage1(instructions.get(3));  // sub 4 3 2 [INICIADA]
+    clock++;
+
+
+    // Ciclo 5
+    executeStage4();  // addi 2 0 20 [FINALIZADA]
+    clock++;
+    PC++;
+
+    executeStage3();  // addi 3 0 2
+    clock++;
+
+    executeStage2();  // sub 4 3 2
+    clock++;
+
+    executeStage1(instructions.get(4));  // add 5 1 2 [INICIADA]
+    clock++;
+
+
+    // Ciclo 6
+    executeStage4();  // addi 3 0 2 [FINALIZADA]
+    clock++;
+    PC++;
+
+    executeStage3();  // sub 4 3 2
+    clock++;
+
+    executeStage2();  // add 5 1 2
+    clock++;
+
+
+    // Ciclo 7
+    executeStage4();  // sub 4 3 2 [FINALIZADA]
+    clock++;
+    PC++;
+
+    executeStage3();  // add 5 1 2
+    clock++;
+
+
+    // Ciclo 8
+    executeStage4();  // add 5 1 2 [FINALIZADA]
+    clock++;
+    PC++;
+
+Clock cicles = 20;
+PC = 5;
